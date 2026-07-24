@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="联系 AKO 阿格建筑 - 商务询盘与咨询">
+  <title>联系 AKO - 阿格建筑</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar__logo"><img src="assets/ako_logo.png" alt="AKO"></a>
+      <div class="navbar__links">
+        <a href="index.html">首页</a>
+        <a href="products.html">产品</a>
+        <a href="projects.html">项目</a>
+        <a href="tech.html">技术</a>
+        <a href="about.html">关于</a>
+        <a href="contact.html">联系</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="index.html">首页</a>
+    <a href="products.html">产品</a>
+    <a href="projects.html">项目</a>
+    <a href="tech.html">技术</a>
+    <a href="about.html">关于</a>
+    <a href="contact.html">联系</a>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>联系 AKO</h1>
+      <p class="subtitle">CONTACT &amp; INQUIRY</p>
+    </div>
+  </section>
+
+  <!-- Contact Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Contact Info -->
+        <div>
+          <div class="contact-info__item">
+            <div class="contact-info__label">地址</div>
+            <div class="contact-info__value">贵阳市云岩区百灵尚品一号B1栋503室</div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__label">邮箱</div>
+            <div class="contact-info__value">contact@akobuild.cloud</div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__label">电话</div>
+            <div class="contact-info__value">周女士 13385118522</div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__label">网站</div>
+            <div class="contact-info__value">akobuild.cloud</div>
+          </div>
+
+          <div style="margin-top:40px;">
+            <p style="font-size:13px;color:var(--color-amber);line-height:1.8;">
+              工作时间：周一至周五 9:00-18:00<br>
+              我们将在 24 小时内回复您的咨询
+            </p>
+            <a href="AKO_xm_线索登记表.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:12px 20px;background:#A08C64;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#8a7a55'" onmouseout="this.style.background='#A08C64'">
+              📋 打开 XM 线索登记表
+              <span style="font-size:12px;opacity:0.8;">（内部工具）</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Inquiry Form -->
+        <div>
+          <form class="form" id="projectForm">
+            <!-- 项目信息 -->
+            <div class="form__group">
+              <label class="form__label">项目名称 *</label>
+              <input class="form__input" type="text" name="projectName" placeholder="请输入项目名称" required>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label">项目地点 *</label>
+              <input class="form__input" type="text" name="projectLocation" placeholder="请输入项目地点" required>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label">建筑面积(m²) *</label>
+              <input class="form__input" type="number" name="buildingArea" placeholder="请输入建筑面积" required>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label">建筑类型</label>
+              <select class="form__select" name="buildingType">
+                <option value="">请选择</option>
+                <option value="residential">住宅</option>
+                <option value="commercial">商业</option>
+                <option value="public">公共设施</option>
+                <option value="industrial">工业厂房</option>
+                <option value="other">其他</option>
+              </select>
+            </div>
+
+            <!-- 墙板类型多选 -->
+            <div class="form__group">
+              <label class="form__label">墙板类型（可多选）</label>
+              <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" name="panelType" value="陶粒"> 轻质发泡陶粒混凝土墙板</label>
+                <label class="checkbox-item"><input type="checkbox" name="panelType" value="EPS"> EPS墙板</label>
+                <label class="checkbox-item"><input type="checkbox" name="panelType" value="ALC"> ALC墙板</label>
+                <label class="checkbox-item"><input type="checkbox" name="panelType" value="预制"> 预制混凝土</label>
+              </div>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label">墙板厚度</label>
+              <select class="form__select" name="panelThickness">
+                <option value="">请选择</option>
+                <option value="120">120mm</option>
+                <option value="150">150mm</option>
+                <option value="180">180mm</option>
+                <option value="200">200mm</option>
+              </select>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label">预计层数</label>
+              <input class="form__input" type="number" name="floors" placeholder="请输入预计层数">
+            </div>
+
+            <!-- 联系信息 -->
+            <div class="form__group">
+              <label class="form__label">联系人 *</label>
+              <input class="form__input" type="text" name="contactName" placeholder="请输入联系人姓名" required>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label">联系电话 *</label>
+              <input class="form__input" type="tel" name="contactPhone" placeholder="请输入手机号" required>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label">预计造价（万元）</label>
+              <input class="form__input" type="number" name="estimatedCost" placeholder="请输入预计造价">
+            </div>
+
+            <div class="form__group">
+              <label class="form__label">预计开工时间</label>
+              <input class="form__input" type="date" name="startDate">
+            </div>
+
+            <div class="form__group">
+              <label class="form__label">备注</label>
+              <textarea class="form__textarea" name="remarks" rows="3" placeholder="请输入备注信息"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary">提交项目</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <a href="contact.html" class="btn btn--primary btn--large" onclick="document.getElementById('projectForm').scrollIntoView({behavior:'smooth'});return false;">立即获取报价 →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div>
+        <div class="footer__brand">AKO</div>
+        <p class="footer__text">贵州阿格装配式建筑智造有限公司<br>比新更新，比省更省！</p>
+      </div>
+      <div class="footer__links">
+        <a href="products.html">产品体系</a>
+        <a href="projects.html">项目案例</a>
+        <a href="tech.html">技术背书</a>
+        <a href="contact.html">联系询盘</a>
+      </div>
+      <div class="footer__links">
+        <a href="about.html">关于 AKO</a>
+        <a href="mailto:contact@akobuild.cloud">contact@akobuild.cloud</a>
+        <a href="https://akobuild.cloud">akobuild.cloud</a>
+      </div>
+      <div class="footer__bottom">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">黔ICP备2026012163号-1</a>
+        <a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52010302004002" target="_blank" rel="nofollow" style="display:inline-flex;align-items:center;gap:4px;vertical-align:middle;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L2 3.5V7.5C2 10.5 4.5 13.5 8 15C11.5 13.5 14 10.5 14 7.5V3.5L8 1Z" fill="#1E6FFF"/><path d="M6.5 8.5L5 7L4 8L6.5 10.5L12 5L11 4L6.5 8.5Z" fill="white"/></svg>贵公网安备52010302004002号
+        </a>
+        &copy; 2026 AKO Architecture. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/widget.js"></script>
+</body>
+</html>

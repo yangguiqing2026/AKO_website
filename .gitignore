@@ -1,0 +1,16 @@
+# 询盘数据（隐私）
+data/
+
+# PHP 日志
+*.log
+logs/
+
+# 本地配置（含数据库/SMTP 密码）
+config.local.php
+
+# 推送队列运行时状态
+push_queue.json
+
+# Python
+__pycache__/
+*.pyc

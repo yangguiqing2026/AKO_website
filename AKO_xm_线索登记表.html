@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AKO-XM 线索登记表</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 12px;
+    font-size: 15px;
+    color: #333;
+  }
+  .header {
+    text-align: center;
+    padding: 16px 0;
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .header h1 {
+    font-size: 18px;
+    color: #EBDAB9;
+    font-weight: 600;
+  }
+  .header .sub {
+    font-size: 12px;
+    color: #999;
+    margin-top: 4px;
+  }
+  .section {
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .section-title {
+    background: #EBDAB9;
+    color: #231C1C;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .field {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .field:last-child { border-bottom: none; }
+  .field-label {
+    width: 90px;
+    flex-shrink: 0;
+    color: #666;
+    font-size: 14px;
+  }
+  .field-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: #333;
+    background: transparent;
+    padding: 4px 0;
+  }
+  .field-input::placeholder {
+    color: #ccc;
+    font-size: 14px;
+  }
+  .field-input:focus {
+    border-bottom: 1px solid #EBDAB9;
+  }
+  .checkbox-group {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #555;
+  }
+  .checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #A08C64;
+  }
+  .radio-group {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #555;
+  }
+  .radio-item input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #A08C64;
+  }
+  .sub-field {
+    padding-left: 104px;
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sub-field .field-label {
+    width: auto;
+    font-size: 13px;
+    color: #888;
+  }
+  .sub-field .field-input {
+    width: 80px;
+    flex: none;
+  }
+  .textarea-field {
+    align-items: flex-start;
+  }
+  .textarea-field textarea {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: #333;
+    background: transparent;
+    resize: vertical;
+    min-height: 60px;
+    font-family: inherit;
+  }
+  .textarea-field textarea::placeholder {
+    color: #ccc;
+  }
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #A08C64;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 6px rgba(160,140,100,0.3);
+  }
+  .submit-btn:active {
+    background: #8a7a55;
+  }
+  .meta-row {
+    display: flex;
+    gap: 8px;
+  }
+  .meta-row .field {
+    flex: 1;
+    border-bottom: none;
+    padding: 10px 14px;
+  }
+  .meta-row .field-label {
+    width: auto;
+    white-space: nowrap;
+  }
+  .meta-row .field-input {
+    width: 60px;
+    flex: none;
+  }
+  .divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 0 14px;
+  }
+  .toast {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>AKO-XM 线索登记表</h1>
+  <div class="sub">贵州阿格装配式建筑制造有限公司</div>
+</div>
+
+<!-- 登记信息 -->
+<div class="section">
+  <div class="meta-row">
+    <div class="field">
+      <span class="field-label">登记日期</span>
+      <input type="date" class="field-input" id="reg_date">
+    </div>
+    <div class="field">
+      <span class="field-label">登记人</span>
+      <input type="text" class="field-input" placeholder="姓名" id="reg_person">
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="field">
+     <span class="field-label">线索编号</span>
+     <span style="color:#A08C64;font-weight:600;font-size:14px;" id="xmPrefix">AKO_xm_2026</span>
+     <input type="text" class="field-input" placeholder="加载中..." style="flex:1;width:60px;color:#A08C64;font-weight:600;" id="线索编号" readonly>
+  </div>
+</div>
+
+<!-- 一、基本信息 -->
+<div class="section">
+  <div class="section-title">一、基本信息</div>
+
+  <div class="field">
+    <span class="field-label">项目名称</span>
+    <input type="text" class="field-input" placeholder="" id="项目名称">
+  </div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">类目</span>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="类目" value="自建房"> 自建房</label>
+      <label class="checkbox-item"><input type="checkbox" name="类目" value="民宿酒店"> 民宿酒店</label>
+      <label class="checkbox-item"><input type="checkbox" name="类目" value="景区配套"> 景区配套</label>
+      <label class="checkbox-item"><input type="checkbox" name="类目" value="工业厂房"> 工业厂房</label>
+      <label class="checkbox-item"><input type="checkbox" name="类目" value="小型房开"> 小型房开</label>
+      <label class="checkbox-item"><input type="checkbox" name="类目" value="企业办公楼"> 企业办公楼</label>
+    </div>
+  </div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">项目地点</span>
+    <div style="flex:1;">
+      <div class="sub-field">
+        <span class="field-label">省</span>
+        <input type="text" class="field-input" placeholder="" id="省">
+      </div>
+      <div class="sub-field">
+        <span class="field-label">市</span>
+        <input type="text" class="field-input" placeholder="" id="市">
+      </div>
+      <div class="sub-field">
+        <span class="field-label">区/县</span>
+        <input type="text" class="field-input" placeholder="" id="区县">
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="field-label">业主名称</span>
+    <input type="text" class="field-input" placeholder="" id="业主名称">
+  </div>
+
+  <div class="field">
+    <span class="field-label">联系人</span>
+    <input type="text" class="field-input" placeholder="" id="联系人">
+  </div>
+
+  <div class="field">
+    <span class="field-label">电话</span>
+    <input type="tel" class="field-input" placeholder="" id="电话">
+  </div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">信息来源</span>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="来源" value="政府招标"> 政府招标</label>
+      <label class="checkbox-item"><input type="checkbox" name="来源" value="协会"> 协会</label>
+      <label class="checkbox-item"><input type="checkbox" name="来源" value="熟人介绍"> 熟人介绍</label>
+      <label class="checkbox-item"><input type="checkbox" name="来源" value="合作方"> 合作方</label>
+      <label class="checkbox-item"><input type="checkbox" name="来源" value="自建渠道"> 自建渠道</label>
+      <label class="checkbox-item"><input type="checkbox" name="来源" value="其他"> 其他</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="field-label">介绍人</span>
+    <input type="text" class="field-input" placeholder="" id="介绍人">
+  </div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">关系强度</span>
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="关系强度" value="强"> 强</label>
+      <label class="radio-item"><input type="radio" name="关系强度" value="中"> 中</label>
+      <label class="radio-item"><input type="radio" name="关系强度" value="弱"> 弱</label>
+    </div>
+  </div>
+</div>
+
+<!-- 二、项目概况 -->
+<div class="section">
+  <div class="section-title">二、项目概况</div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">项目类型</span>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="类型" value="住宅"> 住宅</label>
+      <label class="checkbox-item"><input type="checkbox" name="类型" value="商业"> 商业</label>
+      <label class="checkbox-item"><input type="checkbox" name="类型" value="公建"> 公建</label>
+      <label class="checkbox-item"><input type="checkbox" name="类型" value="样板房"> 样板房</label>
+      <label class="checkbox-item"><input type="checkbox" name="类型" value="其他"> 其他</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="field-label">建筑面积</span>
+    <input type="number" class="field-input" placeholder="" id="建筑面积" style="flex:1;">
+    <span style="color:#999;margin-left:4px;">㎡</span>
+  </div>
+
+  <div class="field">
+    <span class="field-label">层数</span>
+    <input type="number" class="field-input" placeholder="" id="层数" style="flex:1;">
+    <span style="color:#999;margin-left:4px;">层</span>
+  </div>
+
+  <div class="field">
+    <span class="field-label">结构形式</span>
+    <input type="text" class="field-input" placeholder="" id="结构形式">
+  </div>
+
+  <div class="field">
+    <span class="field-label">计划工期</span>
+    <input type="number" class="field-input" placeholder="" id="计划工期" style="flex:1;">
+    <span style="color:#999;margin-left:4px;">个月</span>
+  </div>
+
+  <div class="field">
+    <span class="field-label">计划开工</span>
+    <input type="month" class="field-input" placeholder="" id="计划开工" style="flex:1;">
+  </div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">预算范围</span>
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="预算" value="30万以下"> 30万以下</label>
+      <label class="radio-item"><input type="radio" name="预算" value="30-50万"> 30-50万</label>
+      <label class="radio-item"><input type="radio" name="预算" value="50-100万"> 50-100万</label>
+      <label class="radio-item"><input type="radio" name="预算" value="100-300万"> 100-300万</label>
+      <label class="radio-item"><input type="radio" name="预算" value="300万以上"> 300万以上</label>
+      <label class="radio-item"><input type="radio" name="预算" value="未知"> 未知</label>
+    </div>
+  </div>
+</div>
+
+<!-- 三、AKO 适配性初判 -->
+<div class="section">
+  <div class="section-title">三、AKO 适配性初判</div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">适合体系</span>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="体系" value="承重"> 承重</label>
+      <label class="checkbox-item"><input type="checkbox" name="体系" value="非承重"> 非承重</label>
+      <label class="checkbox-item"><input type="checkbox" name="体系" value="围护"> 围护</label>
+    </div>
+  </div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">墙板用量</span>
+    <div style="flex:1;">
+      <div class="sub-field">
+        <span class="field-label">面积</span>
+        <input type="number" class="field-input" placeholder="" id="墙板面积">
+        <span style="color:#999;">㎡</span>
+      </div>
+      <div class="sub-field">
+        <span class="field-label">估计块数</span>
+        <input type="number" class="field-input" placeholder="" id="墙板块数">
+        <span style="color:#999;">块</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">适配结论</span>
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="适配" value="高适配"> 高适配</label>
+      <label class="radio-item"><input type="radio" name="适配" value="中适配"> 中适配</label>
+      <label class="radio-item"><input type="radio" name="适配" value="低适配"> 低适配</label>
+      <label class="radio-item"><input type="radio" name="适配" value="待评估"> 待评估</label>
+    </div>
+  </div>
+
+  <div class="field textarea-field">
+    <span class="field-label">适配说明</span>
+    <textarea class="field-input" placeholder="简述适配理由、限制条件、需确认事项…" id="适配说明"></textarea>
+  </div>
+</div>
+
+<!-- 四、沟通记录 -->
+<div class="section">
+  <div class="section-title">四、沟通记录</div>
+
+  <div class="field">
+    <span class="field-label">最近沟通</span>
+    <input type="date" class="field-input" id="最近沟通" style="flex:1;">
+  </div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">沟通方式</span>
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="沟通方式" value="电话"> 电话</label>
+      <label class="radio-item"><input type="radio" name="沟通方式" value="微信"> 微信</label>
+      <label class="radio-item"><input type="radio" name="沟通方式" value="面谈"> 面谈</label>
+      <label class="radio-item"><input type="radio" name="沟通方式" value="邮件"> 邮件</label>
+    </div>
+  </div>
+
+  <div class="field textarea-field">
+    <span class="field-label">沟通摘要</span>
+    <textarea class="field-input" placeholder="记录沟通要点、客户关注事项…" id="沟通摘要"></textarea>
+  </div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">客户意向</span>
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="意向" value="强意向"> 强意向</label>
+      <label class="radio-item"><input type="radio" name="意向" value="中意向"> 中意向</label>
+      <label class="radio-item"><input type="radio" name="意向" value="弱意向"> 弱意向</label>
+      <label class="radio-item"><input type="radio" name="意向" value="观望"> 观望</label>
+    </div>
+  </div>
+</div>
+
+<!-- 五、跟进计划 -->
+<div class="section">
+  <div class="section-title">五、跟进计划</div>
+
+  <div class="field">
+    <span class="field-label">下次跟进</span>
+    <input type="date" class="field-input" id="下次跟进" style="flex:1;">
+  </div>
+
+  <div class="field" style="align-items:flex-start;">
+    <span class="field-label">当前阶段</span>
+    <div class="radio-group">
+      <label class="radio-item"><input type="radio" name="阶段" value="初次接触"> 初次接触</label>
+      <label class="radio-item"><input type="radio" name="阶段" value="方案沟通"> 方案沟通</label>
+      <label class="radio-item"><input type="radio" name="阶段" value="报价阶段"> 报价阶段</label>
+      <label class="radio-item"><input type="radio" name="阶段" value="签约"> 签约</label>
+      <label class="radio-item"><input type="radio" name="阶段" value="流失"> 流失</label>
+    </div>
+  </div>
+
+  <div class="field textarea-field">
+    <span class="field-label">行动计划</span>
+    <textarea class="field-input" placeholder="下一步具体行动、负责人、时间节点…" id="行动计划"></textarea>
+  </div>
+</div>
+
+<button class="submit-btn" onclick="saveLead()">保存线索</button>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function collectForm() {
+  var data = {};
+  // text/number/date inputs
+  var inputs = document.querySelectorAll('.field-input');
+  for (var i = 0; i < inputs.length; i++) {
+    var el = inputs[i];
+    if (el.id) data[el.id] = el.value;
+  }
+  // checkboxes — collect names with checked values
+  var checkboxNames = {};
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  for (var j = 0; j < checkboxes.length; j++) {
+    var cb = checkboxes[j];
+    if (!checkboxNames[cb.name]) checkboxNames[cb.name] = [];
+    checkboxNames[cb.name].push(cb.value);
+  }
+  for (var k in checkboxNames) {
+    data[k] = checkboxNames[k].join(', ');
+  }
+  // radios
+  var radioNames = {};
+  var radios = document.querySelectorAll('input[type="radio"]:checked');
+  for (var r = 0; r < radios.length; r++) {
+    var rd = radios[r];
+    radioNames[rd.name] = rd.value;
+  }
+  for (var m in radioNames) {
+    data[m] = radioNames[m];
+  }
+  // textareas with id
+  var textareas = document.querySelectorAll('textarea.field-input');
+  for (var t = 0; t < textareas.length; t++) {
+    var ta = textareas[t];
+    if (ta.id) data[ta.id] = ta.value;
+  }
+  return data;
+}
+
+function showToast(msg) {
+  var toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(function() { toast.classList.remove('show'); }, 2000);
+}
+
+// 页面加载时预取下一个编号
+(function fetchNextNumber() {
+  fetch('/lead_submit.php', { method: 'GET' })
+    .then(function (r) { return r.json(); })
+    .then(function (res) {
+      if (res.ok && res.nextNumber) {
+        var num = res.nextNumber;
+        document.getElementById('线索编号').value = num.replace('AKO_xm_2026', '');
+        document.getElementById('线索编号').placeholder = '';
+      }
+    })
+    .catch(function () {
+      document.getElementById('线索编号').placeholder = '获取失败';
+    });
+})();
+
+function saveLead() {
+  var data = collectForm();
+  if (!data['项目名称'] && !data['联系人']) {
+    showToast('请至少填写项目名称或联系人');
+    return;
+  }
+  // 线索编号由服务端自动分配 AKO_xm_2026xxx，前端无需生成
+  // 自动填日期
+  if (!data['reg_date']) {
+    var today = new Date().toISOString().split('T')[0];
+    data['reg_date'] = today;
+    document.getElementById('reg_date').value = today;
+  }
+
+  // 提交到后端入库
+  var btn = document.querySelector('.submit-btn');
+  var origText = btn.textContent;
+  btn.textContent = '提交中...';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+
+  fetch('/lead_submit.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+    .then(function (r) { return r.json(); })
+    .then(function (res) {
+      if (res.ok) {
+        // 将服务端返回的编号回填到输入框
+        if (res.xmNumber) {
+          document.getElementById('线索编号').value = res.xmNumber.replace('AKO_xm_2026', '');
+        }
+        showToast('线索已提交（编号：' + (res.xmNumber || res.id) + '）');
+      } else if (res.dup) {
+        showToast('该号码 5 分钟内已提交过，请勿重复');
+      } else {
+        showToast('提交失败：' + (res.error || '未知错误'));
+      }
+      btn.textContent = origText;
+      btn.disabled = false;
+      btn.style.opacity = '';
+    })
+    .catch(function () {
+      showToast('网络错误，请稍后重试');
+      btn.textContent = origText;
+      btn.disabled = false;
+      btn.style.opacity = '';
+    });
+}
+</script>
+
+</body>
+</html>

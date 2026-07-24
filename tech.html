@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AKO 技术背书 - 核心性能参数与标准认证">
+  <title>技术背书 - AKO 阿格建筑</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar__logo"><img src="assets/ako_logo.png" alt="AKO"></a>
+      <div class="navbar__links">
+        <a href="index.html">首页</a>
+        <a href="products.html">产品</a>
+        <a href="projects.html">项目</a>
+        <a href="tech.html">技术</a>
+        <a href="about.html">关于</a>
+        <a href="contact.html">联系</a>
+      </div>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="index.html">首页</a>
+    <a href="products.html">产品</a>
+    <a href="projects.html">项目</a>
+    <a href="tech.html">技术</a>
+    <a href="about.html">关于</a>
+    <a href="contact.html">联系</a>
+  </div>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>技术背书</h1>
+      <p class="subtitle">TECHNOLOGY &amp; CERTIFICATION</p>
+    </div>
+  </section>
+
+  <!-- 4 Core Parameters -->
+  <section class="section">
+    <div class="container">
+      <div class="tech-params">
+        <div class="tech-param">
+          <div class="tech-param__value">46</div>
+          <div class="tech-param__unit">dB</div>
+          <div class="tech-param__label">隔声量</div>
+        </div>
+        <div class="tech-param">
+          <div class="tech-param__value">≥4</div>
+          <div class="tech-param__unit">h</div>
+          <div class="tech-param__label">耐火极限</div>
+        </div>
+        <div class="tech-param">
+          <div class="tech-param__value">5-10</div>
+          <div class="tech-param__unit">MPa</div>
+          <div class="tech-param__label">抗压强度</div>
+        </div>
+        <div class="tech-param">
+          <div class="tech-param__value">7000</div>
+          <div class="tech-param__unit">Pa</div>
+          <div class="tech-param__label">抗风压</div>
+        </div>
+      </div>
+
+      <!-- Standard Certification -->
+      <div class="tech-cert">
+        <div class="tech-cert__standard">T/CECS 10154-2021</div>
+        <div class="tech-cert__desc">陶粒发泡混凝土一体化墙板 — 中国工程建设标准化协会团体标准</div>
+      </div>
+
+      <!-- Performance Summary -->
+      <div class="tech-summary">
+        <div class="tech-summary__item">
+          <div class="tech-summary__value">138 kg/m²</div>
+          <div class="tech-summary__label">面密度</div>
+        </div>
+        <div class="tech-summary__item">
+          <div class="tech-summary__value">三层别墅</div>
+          <div class="tech-summary__label">承重验证通过</div>
+        </div>
+        <div class="tech-summary__item">
+          <div class="tech-summary__value">30年</div>
+          <div class="tech-summary__label">免维护</div>
+        </div>
+      </div>
+
+      <!-- Enterprise Standard Download -->
+      <div class="tech-download">
+        <h2 class="tech-download__title">企业标准下载</h2>
+        <p class="tech-download__desc">下载 AKO 企业标准文件（PDF），了解更多技术参数与质量规范。</p>
+        <div class="tech-download__list">
+          <button class="btn btn--primary" id="downloadBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;vertical-align:middle;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>下载标准文件
+          </button>
+        </div>
+      </div>
+
+      <!-- Download Modal -->
+      <div class="modal-overlay" id="downloadModal">
+        <div class="modal">
+          <div class="modal__header">
+            <h3 class="modal__title">选择要下载的文件</h3>
+            <button class="modal__close" id="modalClose">&times;</button>
+          </div>
+          <div class="modal__body" id="modalBody">
+            <p class="modal__loading">加载中…</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technology Source -->
+      <div class="tech-source">
+        <p>专注绿色钢结构装配式建造体系研发</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div>
+        <div class="footer__brand">AKO</div>
+        <p class="footer__text">贵州阿格装配式建筑智造有限公司<br>比新更新，比省更省！</p>
+      </div>
+      <div class="footer__links">
+        <a href="products.html">产品体系</a>
+        <a href="projects.html">项目案例</a>
+        <a href="tech.html">技术背书</a>
+        <a href="contact.html">联系询盘</a>
+      </div>
+      <div class="footer__links">
+        <a href="about.html">关于 AKO</a>
+        <a href="mailto:contact@akobuild.cloud">contact@akobuild.cloud</a>
+        <a href="https://akobuild.cloud">akobuild.cloud</a>
+      </div>
+      <div class="footer__bottom">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">黔ICP备2026012163号-1</a>
+        <a href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=52010302004002" target="_blank" rel="nofollow" style="display:inline-flex;align-items:center;gap:4px;vertical-align:middle;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1L2 3.5V7.5C2 10.5 4.5 13.5 8 15C11.5 13.5 14 10.5 14 7.5V3.5L8 1Z" fill="#1E6FFF"/><path d="M6.5 8.5L5 7L4 8L6.5 10.5L12 5L11 4L6.5 8.5Z" fill="white"/></svg>贵公网安备52010302004002号
+        </a>
+        &copy; 2026 AKO Architecture. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/widget.js"></script>
+</body>
+</html>
