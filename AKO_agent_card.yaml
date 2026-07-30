@@ -1,0 +1,37 @@
+# ============================================
+# Author: AKO_studio
+# Agent Card for: AKO_website
+# Generated: 2026-07-30
+# ============================================
+
+agent_id: "AKO_website"
+name: "Ako Website"
+version: "1.0.0"
+author: "AKO_studio"
+created_date: "2026-07-30"
+status: "active"
+
+description: "Ako Website Agent for AKO fleet automation."
+
+capabilities:
+  - "Automated task processing"
+  - "CLI-driven operation"
+
+dependencies:
+  - "python>=3.9"
+
+interfaces:
+  input: "config.yaml / CLI 参数"
+  output: "结果文件 / 日志"
+
+health_probe:
+  endpoint: "/health"
+  expected_response: "ok"
+
+registry:
+  registry_agent: "AKO_registry_agent"
+  registered: false
+
+tags:
+  - "code"
+  - "marketing"

@@ -1,0 +1,15 @@
+# ============================================
+# Author: AKO_studio
+# Agent: AKO_website
+# Configuration File
+# ============================================
+
+agent:
+  id: "AKO_website"
+  name: "Ako Website"
+  log_level: "INFO"
+
+# TODO: Add agent-specific configuration below
+# example:
+#   param1: "value1"
+#   param2: 100
